@@ -26,8 +26,10 @@ const Login = () => {
       if (data.success) {
         console.log("Login successful:", data);
         localStorage.setItem("token", data.token);
+        localStorage.setItem("username", username);
+
         setError(null);
-        window.location.href = "http://localhost:5174/users";
+        window.location.href = "http://localhost:5173/users";
       } else {
         setError(
           data.message || "An unexpected error occurred. Please try again."
