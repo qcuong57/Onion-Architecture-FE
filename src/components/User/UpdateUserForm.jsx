@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Modal, TextInput, Button } from "@mantine/core";
-import { updateUserService } from "../../services/UserService"; // Ensure this service exists
+import { updateUserService } from "../../services/UserService";
 
-const UpdateUserForm = ({ user, onClose, onUpdate }) => {
+const UpdateUserForm = ({ user, onClose, onUpdate = () => {} }) => {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState(user.password);
   const [phone, setPhone] = useState(user.phone);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +17,11 @@ const UpdateUserForm = ({ user, onClose, onUpdate }) => {
       await updateUserService(updatedUser);
       onUpdate(updatedUser);
       onClose();
+      window.location.reload();
     } catch (error) {
       console.error("Error updating user:", error);
-    }
+      setError("Failed to updating user. Please try again.");
+  }
   };
 
   return (

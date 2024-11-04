@@ -5,7 +5,7 @@ export const getUserService = async () => {
     const response = await axios.get("/users");
     return response;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
@@ -14,8 +14,7 @@ export const createUserService = async (user) => {
     const response = await axios.post("/users", user);
     return response;
   } catch (error) {
-    return error;
-  }
+    throw error;}
 };
 
 export const updateUserService = async (user) => {
@@ -23,7 +22,7 @@ export const updateUserService = async (user) => {
     const response = await axios.put(`/users/${user.id}`, user);
     return response;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
@@ -32,7 +31,7 @@ export const deleteUserService = async (userId) => {
     const response = await axios.delete(`/users/${userId}`);
     return response;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 

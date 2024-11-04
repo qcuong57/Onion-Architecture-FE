@@ -2,6 +2,7 @@ import { Table } from "@mantine/core";
 import styles from "../User/UserTable.module.scss";
 import { useState, useEffect } from "react";
 import { getUserService } from "../../services/UserService";
+import { deleteUserService } from "../../services/UserService";
 import { IconEdit, IconTrash } from "@tabler/icons-react";
 import UpdateUserForm from "./UpdateUserForm";
 
