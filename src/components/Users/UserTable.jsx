@@ -1,9 +1,9 @@
-import { Table } from "@mantine/core";
-import styles from "../User/UserTable.module.scss";
+import { Table, ActionIcon } from "@mantine/core";
+import styles from "./UserTable.module.scss";
 import { useState, useEffect } from "react";
 import { getUserService } from "../../services/UserService";
 import { deleteUserService } from "../../services/UserService";
-import { IconEdit, IconTrash } from "@tabler/icons-react";
+import { IconPencil, IconTrash } from "@tabler/icons-react";
 import UpdateUserForm from "./UpdateUserForm";
 
 const UserTable = () => {
@@ -39,7 +39,7 @@ const UserTable = () => {
       await deleteUserService(userId); 
       setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
       console.log("User deleted:", userId);
-      
+      alert("User deleted successfully");
     } catch (error) {
       console.error("Error deleting user:", error);
     }
@@ -55,7 +55,8 @@ const UserTable = () => {
         <Table.Td>{user.password}</Table.Td>
         <Table.Td>{user.phone}</Table.Td>
         <Table.Td>
-          <IconEdit
+        <ActionIcon variant="filled" radius="xl" title="View" className="mr-2">
+          <IconPencil
             size={16}
             style={{ cursor: "pointer", marginRight: 8 }}
             onClick={() => {
@@ -63,11 +64,14 @@ const UserTable = () => {
               setUpdateModalOpen(true);
             }}
           />
+        </ActionIcon>
+        <ActionIcon variant="filled" radius="xl"  title="View" className="mr-2">
           <IconTrash
             size={16}
             style={{ cursor: "pointer" }}
             onClick={() => handleDeleteClick(user.id)}
           />
+        </ActionIcon>
         </Table.Td>{" "}
       </Table.Tr>
     ));

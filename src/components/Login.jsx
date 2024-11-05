@@ -10,13 +10,14 @@ import {
   Text,
   Notification,
 } from "@mantine/core";
+import { useNavigate } from "react-router-dom";
 import { loginService } from "../services/LoginService";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -29,7 +30,7 @@ const Login = () => {
         localStorage.setItem("username", username);
 
         setError(null);
-        window.location.href = "http://localhost:5173/users";
+        navigate("/admin");
       } else {
         setError(
           data.message || "An unexpected error occurred. Please try again."

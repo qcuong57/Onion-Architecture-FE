@@ -1,0 +1,53 @@
+$header-bg-color: #f0f4f8;
+$row-hover-bg-color: #e9eff5;
+$row-selected-bg-color: #d3e4f0;
+$text-color: #333;
+$border-color: #ccc;
+$table-padding: 1rem;
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+
+  thead {
+    background-color: $header-bg-color;
+    color: $text-color;
+    
+    th {
+      padding: $table-padding;
+      text-align: left;
+      font-weight: bold;
+      border-bottom: 2px solid $border-color;
+    }
+  }
+
+  tbody {
+    tr {
+      &:hover {
+        background-color: $row-hover-bg-color;
+      }
+
+      &:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      td {
+        padding: $table-padding;
+        border-bottom: 1px solid $border-color;
+        color: $text-color;
+      }
+    }
+
+    .selected {
+      background-color: $row-selected-bg-color;
+    }
+  }
+
+  .checkbox {
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
+}
+
+
